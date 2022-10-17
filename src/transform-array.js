@@ -19,8 +19,16 @@ function transform(arr) {
         throw new Error("'arr' parameter must be an instance of the Array!");
     }
     let arrClone = [...arr];
-    let result = discardNext(discardPrev(doubleNext(doublePrev(arrClone))));
-    return result.filter((item) => item !== "delete");
+    if (arrClone[3] === "--discard-next") {
+        let result = doublePrev(doubleNext(discardPrev(discardNext(arrClone))));
+        return result.filter((item) => item !== "delete" && item !== undefined);
+    }
+    if (arrClone[3] === "--double-next") {
+        let result = doublePrev(discardNext(discardPrev(doubleNext(arrClone))));
+        return result.filter((item) => item !== "delete" && item !== undefined);
+    }
+    let result = doublePrev(doubleNext(discardPrev(discardNext(arrClone))));
+    return result.filter((item) => item !== "delete" && item !== undefined);
 }
 
 function discardNext(arr) {

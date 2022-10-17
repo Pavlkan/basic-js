@@ -62,7 +62,7 @@ describe('Transform array', () => {
             });
 
         });
-
+        
         it.optional('advanced sequence interactions work well', () => {
             const cases = {
                 doubleDiscarded: {
